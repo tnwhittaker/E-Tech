@@ -63,8 +63,8 @@
     <?php if (isset($_SESSION['user-logged-in'])):?>
                 <nav>
                     <ul class="bottom">
-                        <li class="navbar--items"><a href="" class="header--text">Products</a></li>
-                        <li class="navbar--items"><a href="" class="header--text">Orders</a></li>
+                        <li class="navbar--items"><a href="productList.php" class="header--text">Products</a></li>
+                        <li class="navbar--items"><a href="orderList.php" class="header--text">Orders</a></li>
                     <?php
                         if(strcmp($_SESSION['user-type'], "vendor") == 0):  
                     ?>

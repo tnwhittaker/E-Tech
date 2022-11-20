@@ -54,8 +54,9 @@
                                         <a href="editUser.php?id=<?= $user['user_id']; ?>"
                                         class="btn btn-success btn-sm">Edit User</a>
                                         
-                                        <form action="delete_product.php" method="POST" class="d-inline">
-                                            <button type="submit" name="delete" 
+                                        <form action="deleteUser.php" method="POST" class="d-inline">
+                                            <button type="submit" name="delete"
+                                            value="<?= $user['user_id'];?>" 
                                             class="btn btn-danger btn-sm">Delete User</button>
                                         </form>
                                     </td>
