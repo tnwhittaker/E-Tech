@@ -87,17 +87,10 @@
                                 unset($_SESSION['password']);
                                 unset($_SESSION['confirmpassword']);
     
-                                header( "refresh:5;url=accountList.php" );
+                                header( "Location: accountList.php" );
                             }else{
                                 $_SESSION['message'] = "User Not Registered";
-                                unset($_SESSION['firstname']);
-                                unset($_SESSION['lastname']);
-                                unset($_SESSION['email']);
-                                unset($_SESSION['dob']);
-                                unset($_SESSION['password']);
-                                unset($_SESSION['confirmpassword']);
-    
-                                header( "refresh:5;url=accountList.php" );
+                                header( "Location: accountList.php" );
                             }
                         }
                     }

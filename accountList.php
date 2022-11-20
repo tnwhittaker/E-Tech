@@ -51,7 +51,7 @@
                                     <td><?= $user['email']; ?></td>
                                     <td><?= $user['type']; ?></td>
                                     <td>  
-                                        <a href="edit_product.php"
+                                        <a href="editUser.php?id=<?= $user['user_id']; ?>"
                                         class="btn btn-success btn-sm">Edit User</a>
                                         
                                         <form action="delete_product.php" method="POST" class="d-inline">
