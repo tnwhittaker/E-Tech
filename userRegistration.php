@@ -1,6 +1,6 @@
 <?php include 'header.php';?>
     <main>
-        <form method="POST" action="registerInformation.php">
+        <form method="POST" action="confirmRegistration.php">
             <div class="content">
                 <h2 class="welcome-header">Welcome, Please Fill Out The <br>Form Below</h2>
                 <div class="first-container">

@@ -28,7 +28,7 @@
 
         <nav>
             <ul class="navbar">
-            <li class="navbar--items">
+                <li class="navbar--items">
                     <form action="search.php" method="GET">
                         <div class="search-group">
                             <input type="search" class="search-bar" 
@@ -47,19 +47,36 @@
 
                     if (isset($_SESSION['user-logged-in'])): 
                 ?>
-                    <li class="navbar--items"><h3 style="color: white;">WELCOME 
+                    <li class="navbar--items"><h3 style="color: white;">Welcome 
                     <?php echo $_SESSION['username'];?></h3></li>
                     <li class="navbar--items"><a href="" class="header--text">Edit Profile</a></li>
-                    <li class="navbar--items"><a href="" class="header--text">Products</a></li>
-                    <li class="navbar--items"><a href="" class="header--text">Upload Images</a></li>
-                    <li class="navbar--items"><a href="" class="header--text">Orders</a></li>
                     <li class=""><a href="logout.php" class="header--text">Log Out</a></li>
                 <?php else: ?>
                     <li class="navbar--items"><a href="login.php" class="header--text">Login</a></li>
-                    <li class="navbar--items"><a href="register.php" class="header--text">Sign Up</a></li>
+                    <li class="navbar--items"><a href="userRegistration.php" class="header--text">Sign Up</a></li>
                     <li class="navbar--items"><a href="allProducts.php" class="header--text">View Products</a></li>
                 <?php endif; ?>
             </ul>
         </nav>
+        
     </header>
+    <?php if (isset($_SESSION['user-logged-in'])):?>
+                <nav>
+                    <ul class="bottom">
+                        <li class="navbar--items"><a href="" class="header--text">Products</a></li>
+                        <li class="navbar--items"><a href="" class="header--text">Orders</a></li>
+                    <?php
+                        if(strcmp($_SESSION['user-type'], "vendor") == 0):  
+                    ?>
+                        <li class="navbar--items"><a href="" class="header--text">Upload Images</a></li>
+                    <?php endif;?>
+                    <?php
+                        if(strcmp($_SESSION['user-type'], "admin") == 0):  
+                    ?>
+                        <li class="navbar--items"><a href="accountList.php" class="header--text">Accounts</a></li>
+                    <?php endif;?>
+
+                    </ul>
+                </nav>
+            <?php endif; ?>
 

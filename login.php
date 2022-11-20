@@ -1,6 +1,6 @@
 <?php include 'header.php'; ?>
     <main>
-        <form method="POST" action="LOG_validate.php" >
+        <form method="POST" action="validateLogin.php" >
             <div class="content">
                 <h2 class="welcome-header">Welcome, Login Here</h2>
                 <div class="first-container">
