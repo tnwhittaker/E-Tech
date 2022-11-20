@@ -1,8 +1,12 @@
 <?php
     include 'header.php';
     require 'dbconnect.php';
-    if(isset($_GET['id'])){
-        $user_id = mysqli_real_escape_string($con, $_GET['id']);
+    if(isset($_GET['id']) || isset($_SESSION['user_id'])){
+        if(isset($_GET['id'])){
+            $user_id = mysqli_real_escape_string($con, $_GET['id']);
+        }else{
+            $user_id = mysqli_real_escape_string($con, $_SESSION['user_id']);
+        }
         $query = "SELECT * FROM users WHERE user_id='$user_id'";
         $result = mysqli_query($con, $query);
 

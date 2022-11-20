@@ -49,7 +49,11 @@
                 ?>
                     <li class="navbar--items"><h3 style="color: white;">Welcome 
                     <?php echo $_SESSION['username'];?></h3></li>
-                    <li class="navbar--items"><a href="" class="header--text">Edit Profile</a></li>
+                    <?php
+                        if(strcmp($_SESSION['user-type'], "vendor") == 0):  
+                    ?>
+                    <li class="navbar--items"><a href="editUser.php" class="header--text">Edit Profile</a></li>
+                    <?php endif;?>
                     <li class=""><a href="logout.php" class="header--text">Log Out</a></li>
                 <?php else: ?>
                     <li class="navbar--items"><a href="login.php" class="header--text">Login</a></li>

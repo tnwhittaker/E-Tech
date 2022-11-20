@@ -30,6 +30,7 @@
                                             $_SESSION['user-logged-in'] = true;
                                             $_SESSION['username'] = $user['first_name'] . " " . $user['last_name'];
                                             $_SESSION['user-type'] = $user['type'];
+                                            $_SESSION['user_id'] = $user['user_id'];
                                             echo "<p style='text-align: center;'>Your login was successful.
                                             You will now be redirected to the main page.</p>";
                     

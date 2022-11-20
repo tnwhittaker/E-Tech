@@ -84,14 +84,13 @@
                                 unset($_SESSION['lastname']);
                                 unset($_SESSION['email']);
                                 unset($_SESSION['dob']);
-                                unset($_SESSION['password']);
-                                unset($_SESSION['confirmpassword']);
     
                                 header( "Location: accountList.php" );
                             }else{
                                 $_SESSION['message'] = "User Not Registered";
                                 header( "Location: accountList.php" );
                             }
+                            
                         }
                     }
 
@@ -138,18 +137,30 @@
                             $result = mysqli_query($con, $query);
 
                             if ($result){
-                                $_SESSION['message'] = "User Updated Successfully";
-                                unset($_SESSION['firstname']);
-                                unset($_SESSION['lastname']);
-                                unset($_SESSION['email']);
-                                unset($_SESSION['dob']);
-                                unset($_SESSION['password']);
-                                unset($_SESSION['confirmpassword']);
-    
-                                header( "Location: accountList.php" );
+                                if (isset($_SESSION['user_id'])){
+                                    echo "<p style='text-align: center;'>Information updated.</p>";
+                
+                                    header( "refresh:5;url=index.php" );
+                                }else{
+                                    $_SESSION['message'] = "User Updated Successfully";
+                                    unset($_SESSION['firstname']);
+                                    unset($_SESSION['lastname']);
+                                    unset($_SESSION['email']);
+                                    unset($_SESSION['dob']);
+                                    unset($_SESSION['password']);
+                                    unset($_SESSION['confirmpassword']);
+        
+                                    header( "Location: accountList.php" );
+                                }
                             }else{
-                                $_SESSION['message'] = "User Not Updated";
-                                header( "Location: accountList.php" );
+                                if (isset($_SESSION['user_id'])){
+                                    echo "<p style='text-align: center;'>Information wasn't updated.</p>";
+                
+                                    header( "refresh:5;url=index.php" );
+                                }else{
+                                    $_SESSION['message'] = "User Not Updated";
+                                    header( "Location: accountList.php" );
+                                }
                             }
                         }
                     }

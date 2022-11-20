@@ -35,6 +35,7 @@
                                 <?php 
                                     $query = "SELECT * FROM orders LIMIT $start_from, $num_per_page";
                                     $orders = mysqli_query($con, $query);
+                                    $count = 0;
 
                                     if(mysqli_num_rows($orders) > 0){
                                         foreach($orders as $order){ 
@@ -49,6 +50,23 @@
                                             while($row = mysqli_fetch_array($product_info)){
                                                 $rows[] = $row;
                                             }
+
+                                            if(strcmp($_SESSION['user-type'], "vendor") == 0){
+                                                $name = explode(" ", $rows[0]['vendor']);
+                                                $query = "SELECT * FROM users 
+                                                WHERE first_name='$name[0]' AND last_name='$name[1]'";
+                                                $result = mysqli_query($con, $query);
+
+                                                if (mysqli_num_rows($result) > 0){
+                                                    foreach($result as $rs){
+                                                        if ($rs['user_id'] != $_SESSION['user_id']){
+                                                        continue;
+                                                    }else{
+                                                        $count += 1;
+                                                        break;
+                                                    }
+                                                }
+                                            }
                                 ?>
                                 <tr>
                                     <td><?= $rows[0]['product_name']; ?></td>
@@ -61,9 +79,14 @@
                                 </tr>
                                 <?php
                                             }
-                                                }else{
-                                                    echo "<h5> No Orders Found </h5>";
-                                                }
+                                        }
+                                    }else{
+                                        echo "<h5> No Orders Found </h5>";
+                                    }
+
+                                    if ($count == 0){
+                                        echo "<h5> No Orders Found </h5>";
+                                    }
                                 ?>
                             </tbody>
                         </table>
