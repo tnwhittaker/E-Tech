@@ -43,6 +43,10 @@ a{
     display: flex;
 }
 
+.margin{
+    margin-top: 1rem;
+}
+
 .login{
     background-color: #4717F6;
     color: #E7DFDD;

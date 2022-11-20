@@ -1,7 +1,7 @@
 <?php include 'header.php'; ?>
     <div class="container mt-4">
-        <?php include 'message.php'; ?>
         <?php
+            include 'message.php';
             $num_per_page = 5;
 
             if (isset($_GET['page'])){

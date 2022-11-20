@@ -72,7 +72,7 @@
                     <?php
                         if(strcmp($_SESSION['user-type'], "vendor") == 0):  
                     ?>
-                        <li class="navbar--items"><a href="" class="header--text">Upload Images</a></li>
+                        <li class="navbar--items"><a href="uploadImages.php" class="header--text">Upload Images</a></li>
                     <?php endif;?>
                     <?php
                         if(strcmp($_SESSION['user-type'], "admin") == 0):  
