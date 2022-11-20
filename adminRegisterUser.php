@@ -1,6 +1,6 @@
 <?php include 'header.php';?>
     <main>
-        <form method="POST" action="confirmRegistration.php">
+        <form method="POST" action="confirmAdminRegisterUser.php">
             <div class="content">
                 <h2 class="welcome-header">Welcome, Please Fill Out The <br>Form Below</h2>
                 <div class="first-container">
@@ -40,7 +40,6 @@
                     </section>
                     <div class="btn-login">
                         <input type="submit" name="submit" value="SUBMIT" class="login">
-                        <a href="login.php" class="help-links">Already have an account? Log In</a>
                     </div>
                 </div>
             </div>

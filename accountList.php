@@ -2,10 +2,6 @@
     <div class="container mt-4">
         <?php include 'message.php'; ?>
         <?php
-            if (isset($_GET['product_clear'])){
-                $_GET['product_query'] = '';
-                header( "Location: product_list.php" );
-            }
             $num_per_page = 5;
 
             if (isset($_GET['page'])){
@@ -20,74 +16,57 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Product List
-                            <a href="add_product.php" class="btn btn-primary float-end">Add a Product</a>
+                        <h4>
+                            Account List
+                            <a href="adminRegisterUser.php" class="btn btn-primary float-end">Add User</a>
                         </h4>
                     </div>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                        <div class="product_searchbar">
-                            <input type="text" name="product_query" value="<?php if(isset($_GET['product_query']))
-                            {echo $_GET['product_query'];}else{echo '';}?>" class="search_item search_field">
-                            <input type="submit" value="SEARCH" name="product_search" class="search_item btn_search">
-                            <input type="submit" value="CLEAR" name="product_clear" class="search_item btn_clear">
-                        </div>
-                    </form>
                     <div class="card-body">
                         <table class="table table-bordered table-striped text-center">
                             <thead>
                                 <tr>
-                                    <th>Product Name</th>
-                                    <th>Product Code</th>
-                                    <th>Product Type</th>
-                                    <th>Sales Price</th>
-                                    <!-- Display this if it is an admin -->
-                                    <th>Vendor</th>
+                                    <th>User's Name</th>
+                                    <th>Date of Birth</th>
+                                    <th>Email</th>
+                                    <th>Type</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php 
-                                    // If the user is an admin, use this,
-                                    // If not, get only the products that are of that vendor only
-                                    if (isset($_GET['product_search'])){
-                                        $search = $_GET['product_query'];
-                                        $query = "SELECT * FROM products WHERE
-                                        CONCAT(product_name,product_code,product_type,
-                                        product_description,cost_price,sales_price,quantity,vendor)
-                                        LIKE'%$search%' LIMIT $start_from, $num_per_page";
-                                        $result = mysqli_query($con, $query);
-                                    }else{
-                                        $query = "SELECT * FROM products LIMIT $start_from, $num_per_page";
-                                        $result = mysqli_query($con, $query);
-                                    }
+                                    $count = 0;
+                                    $query = "SELECT * FROM users LIMIT $start_from, $num_per_page";
+                                    $users = mysqli_query($con, $query);
 
-                                    if(mysqli_num_rows($result) > 0){
-                                        foreach($result as $product){   
+                                    if(mysqli_num_rows($users) > 0){
+                                        foreach($users as $user){
+                                            if (strcmp($user['type'], 'admin') == 0){
+                                                continue;
+                                            }   
+                                            $count += 1;  
                                 ?>
                                 <tr>
-                                    <td><?= $product['product_name']; ?></td>
-                                    <td><?= $product['product_code']; ?></td>
-                                    <td><?= $product['product_type']; ?></td>
-                                    <td><?= $product['sales_price']; ?></td>
-                                    <!-- Display this if it is an admin -->
-                                    <td><?= $product['vendor']; ?></td>
-                                    <td >
-                                        <a href="view_product.php?id=<?= $product['product_id']; ?>"
-                                        class="btn btn-info btn-sm">View Product</a>
-
-                                        <a href="edit_product.php?id=<?= $product['product_id']; ?>"
-                                        class="btn btn-success btn-sm">Edit Product</a>
+                                    <td><?= $user['first_name']; ?> <?= $user['last_name']; ?></td>
+                                    <td><?= $user['dob']; ?></td>
+                                    <td><?= $user['email']; ?></td>
+                                    <td><?= $user['type']; ?></td>
+                                    <td>  
+                                        <a href="edit_product.php"
+                                        class="btn btn-success btn-sm">Edit User</a>
                                         
                                         <form action="delete_product.php" method="POST" class="d-inline">
-                                            <button type="submit" name="delete" value="<?= $product['product_id'];?>" 
-                                            class="btn btn-danger btn-sm">Delete Product</button>
+                                            <button type="submit" name="delete" 
+                                            class="btn btn-danger btn-sm">Delete User</button>
                                         </form>
                                     </td>
                                 </tr>
                                 <?php
                                             }
                                                 }else{
-                                                    echo "<h5> No Products Found </h5>";
+                                                    echo "<h5> No Users Found </h5>";
+                                                }
+                                                if ($count == 0){
+                                                    echo "<h5> No Users Found </h5>";
                                                 }
                                 ?>
                             </tbody>
@@ -96,36 +75,18 @@
                 </div>
             </div>
         </div>
-
         <?php
-            if (isset($_GET['product_search'])){
-                $search = $_GET['product_query'];
-                $query = "SELECT * FROM products WHERE
-                CONCAT(product_name,product_code,product_type,
-                product_description,cost_price,sales_price,quantity,vendor)
-                LIKE'%$search%'";
-                $result = mysqli_query($con, $query);
-                $total_records = mysqli_num_rows($result);
-                $total_pages = ceil($total_records/$num_per_page);
+            $product_query = "SELECT * FROM users";
+            $users = mysqli_query($con, $query);
+            $total_records = mysqli_num_rows($users);
+            $total_pages = ceil($total_records/$num_per_page);
 
-                echo "<div class='pagination'>";
-                for($i = 1; $i <= $total_pages; $i++){
-                    echo "<a href='product_list.php?product_query=" . $search .
-                    "&product_search=SEARCH&page=" . $i . "'>" . $i . "</a>";
-                }
-                echo "</div>";
-            }else{
-                $query = "SELECT * FROM products";
-                $result = mysqli_query($con, $query);
-                $total_records = mysqli_num_rows($result);
-                $total_pages = ceil($total_records/$num_per_page);
-
-                echo "<div class='pagination'>";
-                for($i = 1; $i <= $total_pages; $i++){
-                    echo "<a href='product_list.php?page=" . $i . "'>" . $i . "</a>";
-                }
-                echo "</div>";
+            echo "<div class='pagination'>";
+            for($i = 1; $i <= $total_pages; $i++){
+                echo "<a href='accountList.php?page=" . $i . "'>" . $i . "</a>";
             }
+            echo "</div>";
         ?>
     </div>
 <?php include 'footer.php'; ?>
+

@@ -34,24 +34,23 @@
                             echo "<div class='first-container'>";
                             echo "<p style='text-align: center;'>Invalid First Name entered.</p>";
         
-                            header( "refresh:5;url=register.php" );
+                            header( "refresh:5;url=adminRegisterUser.php" );
                         }elseif(!preg_match($name_pattern, $last_name)){
                             echo "<h2 class='welcome-header'>Error</h2>";
                             echo "<div class='first-container'>";
                             echo "<p style='text-align: center;'>Invalid Last Name entered.</p>";
         
-                            header( "refresh:5;url=register.php" );
+                            header( "refresh:5;url=adminRegisterUser.php" );
                         }elseif(!preg_match($email_pattern, $email)){
                             echo "<h2 class='welcome-header'>Error</h2>";
                             echo "<div class='first-container'>";
                             echo "<p style='text-align: center;'>Invalid Email Address entered.</p>";
         
-                            header( "refresh:5;url=register.php" );
+                            header( "refresh:5;url=adminRegisterUser.php" );
                         }elseif($isUser){
                             echo "<h2 class='welcome-header'>Error</h2>";
                             echo "<div class='first-container'>";
-                            echo "<p style='text-align: center;'>You already have an account. 
-                            You will be redirected to the login page.</p>";
+                            echo "<p style='text-align: center;'>This user already has an account.</p>";
                             unset($_SESSION['firstname']);
                             unset($_SESSION['lastname']);
                             unset($_SESSION['email']);
@@ -59,7 +58,7 @@
                             unset($_SESSION['password']);
                             unset($_SESSION['confirmpassword']);
         
-                            header( "refresh:5;url=login.php" );
+                            header( "refresh:5;url=accountList.php" );
                         }
                         
                         elseif ($password !== $password_confirm){
@@ -67,7 +66,7 @@
                             echo "<div class='first-container'>";
                             echo "<p style='text-align: center;'>Passwords do not match.</p>";
         
-                            header( "refresh:5;url=register.php" );
+                            header( "refresh:5;url=adminRegisterUser.php" );
                         }else{
                             ?>
                             <h2 class="welcome-header">Success</h2>
@@ -77,18 +76,29 @@
                             $insert_query = "INSERT INTO users(first_name, last_name, dob, email, password, type) 
                             VALUES('$first_name','$last_name','$dob','$email','$hashpassword', 'vendor')";
 
-                            mysqli_query($con, $insert_query);
-                            echo "<p style='text-align: center;'>Your account has been successfully created.
-                            You will now be redirected to the login page.</p>";
+                            $result = mysqli_query($con, $insert_query);
 
-                            unset($_SESSION['firstname']);
-                            unset($_SESSION['lastname']);
-                            unset($_SESSION['email']);
-                            unset($_SESSION['dob']);
-                            unset($_SESSION['password']);
-                            unset($_SESSION['confirmpassword']);
-
-                            header( "refresh:5;url=login.php" );
+                            if ($result){
+                                $_SESSION['message'] = "User Registered Successfully";
+                                unset($_SESSION['firstname']);
+                                unset($_SESSION['lastname']);
+                                unset($_SESSION['email']);
+                                unset($_SESSION['dob']);
+                                unset($_SESSION['password']);
+                                unset($_SESSION['confirmpassword']);
+    
+                                header( "refresh:5;url=accountList.php" );
+                            }else{
+                                $_SESSION['message'] = "User Not Registered";
+                                unset($_SESSION['firstname']);
+                                unset($_SESSION['lastname']);
+                                unset($_SESSION['email']);
+                                unset($_SESSION['dob']);
+                                unset($_SESSION['password']);
+                                unset($_SESSION['confirmpassword']);
+    
+                                header( "refresh:5;url=accountList.php" );
+                            }
                         }
                     }
                 ?>

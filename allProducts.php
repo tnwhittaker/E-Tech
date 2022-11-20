@@ -8,7 +8,7 @@
                 $results = '
                         <div>
                         <form action="product_selection.php" method="GET">
-                            <div class="card">
+                            <div class="prod-card">
                             <img src="'.$row['image'].'" alt="Avatar" style="width:100%" name="image">
                             <input type="hidden" name="image" value="'. $row['image'].'">
                             <input type="hidden" name="quantity" value="'.$row['quantity'].'">

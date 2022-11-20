@@ -141,18 +141,14 @@ a{
 }
 
 
-.card {
+.prod-card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     width: auto;
 }
   
-.card:hover {
+.prod-card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-.container {
-    padding: 2px 16px;
 }
 
 .test{
@@ -228,7 +224,7 @@ a{
 }
 
 /* Home Page */
-.container, .product--card, .about, .contact{
+.procontainer, .product--card, .about, .contact{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -342,7 +338,7 @@ textarea {
     resize: none;
 }
   
-button[type="submit"] {
+.contact-submit {
     cursor: pointer;
     width: 100%;
     border: none;
@@ -400,4 +396,72 @@ button[type="submit"] {
 
 .footer--links a:hover, .footer--content p:hover{
     color: #4717F6;
+}
+
+/* Product List Page */
+.product_searchbar{
+    margin: 1rem;
+    display: flex;
+    gap: 0.3rem;
+}
+  
+.search_item{
+    width: 15%;
+}
+
+.search_item:nth-of-type(1) {
+    width: 100%;
+}
+  
+.search_field{
+    border-radius: 0.5rem;
+    padding: 0.3rem 1rem;
+    border: 2px solid black;
+}
+  
+.search_field:focus{
+    border: 3px solid purple;
+}
+  
+.btn_search {
+    background-color: #4717F6;
+    color: #E7DFDD;
+    font-family: 'Roboto Serif', serif;
+    border: none;
+    border-radius: 1rem;
+}
+  
+.btn_search:hover {
+  background-color: #a239ca;
+}
+  
+.btn_clear{
+    background-color: #000;
+    color: #E7DFDD;
+    font-family: 'Roboto Serif', serif;
+    border: none;
+    border-radius: 1rem;
+}
+  
+.btn_clear:hover {
+    background-color: rgb(142, 140, 140);
+}
+  
+/* Pagination links */
+.pagination a {
+    color: black;
+    font-weight: bold;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+  
+.pagination a.active {
+    background-color: #4717F6;
+    color: white;
+}
+  
+.pagination a:hover:not(.active) {
+    background-color: rgb(142, 140, 140);
 }

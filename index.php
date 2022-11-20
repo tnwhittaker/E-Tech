@@ -2,7 +2,7 @@
     <main>
         <section class="products">
             <h2>Popular Products</h2>
-            <div class="product-container container">
+            <div class="product-container procontainer">
                 <?php
                     $query = "SELECT * FROM products LIMIT 5";
                     $products = mysqli_query($con, $query);
@@ -66,7 +66,7 @@
                 <label>Description</label>
                 <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
 
-                <button name="submit" type="submit" id="contact-submit" >Submit</button>
+                <button name="submit" type="submit" class="contact-submit" >Submit</button>
             </form>
         </section>
     </main>    

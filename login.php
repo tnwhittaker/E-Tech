@@ -9,10 +9,10 @@
             
                     <input type="password" name="password" class="input" required>
                     <label for="password" class="labels">Password</label>
-                    <div class="container">
+                    <div class="login-container">
                         <div>
                             <input type="submit" name="submit" value="Login" class="login">
-                            <a href="registerInfo.php" class="help-links">New here? Sign Up</a>
+                            <a href="userRegistration.php" class="help-links">New here? Sign Up</a>
                         </div>
                         <div>
                             <a href="#" class="help-links">Forgot my password</a>
