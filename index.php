@@ -9,10 +9,20 @@
 
                     if(mysqli_num_rows($products) > 0){
                         foreach($products as $product){
+                            $productID = $product['product_id'];
+                            $query = "SELECT * FROM images WHERE product_id = '$productID' LIMIT 1";
+                            $result = mysqli_query($con, $query);
+                            if(mysqli_num_rows($result) > 0){
+                                foreach($result as $rs){
+                                    $path = "./upload/" . $rs['image_name'];
+                                }
+                            }else{
+                                $path = "./upload/default.jpeg";
+                            }
                 ?>
                     <div class="product--card">
                         <p class="product--type"><?= $product['product_type']; ?></p>
-                        <img class="product--img" src="<?php echo $product['image']; ?>" alt="product">
+                        <img class="product--img" src="<?php echo $path; ?>" alt="product">
                         <p class="name"><?= $product['product_name']; ?><span class="product--code">
                         <?= $product['product_code']; ?></span></p>
                         <p class="product--cost">$<?= $product['cost_price']; ?></p>

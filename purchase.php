@@ -1,6 +1,11 @@
 <?php
-include 'header.php';
-   
+include 'header.php';?>
+<main>
+<form action="">
+    <div class="content">
+        <h2 class="welcome-header">Order Status</h2>
+        <div class="first-container">
+     <?php
     if(isset($_GET['confirm-order'])){
        if(!is_numeric($_GET['cvv']) || strlen($_GET['cvv'])>3 || empty($_GET['cvv'])){
             echo "There is an error with the CVV number";
@@ -24,8 +29,20 @@ include 'header.php';
             ('".$_SESSION['prod-id']."','".$_GET['name']."','".$_SESSION['user_quantity']."','".$_SESSION['price']."')";
 
             mysqli_query($con, $insert_query);
-            //REDIRECT TO MAIN PAGE
-            //SHOW A BREAKDOWN OF ORDER
-            echo "SUCCESS";
-       }
+            echo "<p style='text-align: center;'>Name of Recipient: ".$_GET['name']."<br>
+            Product Name: ".$_SESSION['product_name']."<br>
+            Shipping Address Line 1: ".$_GET['addr1']."<br>
+            Shipping Address Line 2: ".$_GET['addr2']."<br>
+            City: ".$_GET['city']."<br>
+            Cost: $".$_SESSION['price']."<br>
+            Quantity: ".$_SESSION['user_quantity']."</p>";
+
+          }
     }
+?>
+        </div>
+</div>
+
+</form>
+</main>
+<?php include 'footer.php'; ?>

@@ -5,12 +5,22 @@
             $results_to_print = "";
             $i=1;
             foreach($result as $row){
+                $productID = $row['product_id'];
+                $query = "SELECT * FROM images WHERE product_id = '$productID' LIMIT 1";
+                $images = mysqli_query($con, $query);
+                if(mysqli_num_rows($images) > 0){
+                    foreach($images as $img){
+                        $path = "./upload/" . $img['image_name'];
+                    }
+                }else{
+                    $path = "./upload/default.jpeg";
+                }
                 $results = '
                         <div>
-                        <form action="product_selection.php" method="GET">
+                        <form action="product_selection.php">
                             <div class="prod-card">
-                            <img src="'.$row['image'].'" alt="Avatar" style="width:100%" name="image">
-                            <input type="hidden" name="image" value="'. $row['image'].'">
+                            <img src="'.$path.'" alt="Avatar" style="width:100%" name="image">
+                            <input type="hidden" name="image" value="'. $path.'">
                             <input type="hidden" name="quantity" value="'.$row['quantity'].'">
                             <input type="hidden" name="prod-id" value="'.$row['product_id'].'">
                             <div class="image-container">
@@ -21,8 +31,7 @@
                             style="border:none;" name="sales_price'.$i.'" value="$'.$row['sales_price'].'"/></h4>
                             
                             </div>
-                            <a href="./product_selection.php?product_name' .$i.'=' 
-                            .$row['product_name'].'&sales_price' .$i.'=' .$row['sales_price'].'&">
+                            <a href="./product_selection.php">
                             <input type="submit" style="margin-left: 0.8rem; margin-bottom:1rem;" 
                             name="submit" value="Go to Product" class="login"> </a>
                             </div>

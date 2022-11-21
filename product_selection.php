@@ -1,26 +1,48 @@
-
 <?php
 include 'header.php';
    
-    for ($i = 1; $i < 5; $i++){
-        if (isset($_GET['product_name'.$i])){
-            
-            $_SESSION['product_name'] = $_GET['product_name'.$i];
-            $_SESSION['sales_price'] = $_GET['sales_price'.$i];
-            $_SESSION['image'] = $_GET['image'];
-            $_SESSION['quantity'] = $_GET['quantity'];
-            $_SESSION['prod-id'] = $_GET['prod-id'];
-            break;
+    if (isset($_GET['submit'])){
+        $productID = $_GET['prod-id'];
+        $paths = array();
+        $query = "SELECT * FROM images WHERE product_id = $productID";
+        $images = mysqli_query($con, $query);
+        if(mysqli_num_rows($images) > 0){
+            foreach($images as $image){
+                array_push($paths, './upload/'.$image['image_name']);
+            }  
+        }else{
+            array_push($paths, './upload/default.jpeg');
         }
-
+ 
+        $query = "SELECT * FROM products WHERE product_id='$productID'";
+        $product = mysqli_query($con, $query);
+        if(mysqli_num_rows($images) > 0){
+            foreach($product as $prod){
+                $_SESSION['product_name'] = $prod['product_name'];
+                $_SESSION['sales_price'] = $prod['sales_price'];
+                $_SESSION['quantity'] = $prod['quantity'];
+            }
+        }
     }
 ?>
-<main id="img-carousel">
+<main>
     <div style="display: flex; gap: 1rem;">
         <section class="panel1">
-            <ul id="">    
-                <li><img src="<?php echo $_SESSION['image'];?>" alt="" class="carousel-img"></li>               
-            </ul>   
+            <img id=featured src="<?php echo $paths[0] ?>" alt="featured">
+
+            <div id="slide-wrapper" >
+                <img id="slideLeft" class="arrow" src="arrow-left.png" alt="arrow-left">
+
+                <div id="slider">
+                    <img class="thumbnail active" src="<?php echo $paths[0] ?>" alt="thumbnail">
+                    <?php
+                        for ($i = 1; $i < count($paths); $i++) {
+                    ?>
+                    <img class="thumbnail" src="<?php echo $paths[$i] ?>" alt="thumbnail">
+                    <?php } ?>
+                </div>
+                <img id="slideRight" class="arrow" src="arrow-right.png" alt="arrow-right">
+            </div>  
         </section>
         <section class="panel2">
             <div>
@@ -73,7 +95,36 @@ include 'header.php';
         </section>
     </div>
 </main>
+
+<script type="text/javascript">
+		let thumbnails = document.getElementsByClassName('thumbnail')
+
+		let activeImages = document.getElementsByClassName('active')
+
+		for (var i=0; i < thumbnails.length; i++){
+
+			thumbnails[i].addEventListener('mouseover', function(){
+				
+				if (activeImages.length > 0){
+					activeImages[0].classList.remove('active')
+				}
+				
+				this.classList.add('active')
+				document.getElementById('featured').src = this.src
+			})
+		}
+
+
+		let buttonRight = document.getElementById('slideRight');
+		let buttonLeft = document.getElementById('slideLeft');
+
+		buttonLeft.addEventListener('click', function(){
+			document.getElementById('slider').scrollLeft -= 180
+		})
+
+		buttonRight.addEventListener('click', function(){
+			document.getElementById('slider').scrollLeft += 180
+		})
+</script>
     
 <?php include 'footer.php'; ?>
-
-    

@@ -10,7 +10,7 @@ include 'header.php';
     }
 
 ?>
-<main id="img-carousel">
+<main>
     <div style="display: flex; gap: 1rem;">
         <section class="panel1">
         <h2>Review of Order</h2> 
