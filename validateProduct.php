@@ -68,10 +68,17 @@
                             $sales = mysqli_real_escape_string($con, $salesprice);
                             $quan = mysqli_real_escape_string($con, $quantity);
 
+                            if (strcmp($_SESSION['user-type'], 'vendor') == 0) {
+                                $vendorID = $_SESSION['user_id'];
+                                $vendorName = $_SESSION['username'];
+                            }else{
+                                
+                            }
+
                             $query = "INSERT INTO products (product_name,product_code,product_type,
-                            product_description,cost_price,sales_price,quantity) 
+                            product_description,cost_price,sales_price,quantity, vendor_id, vendor) 
                             VALUES ('$name','$code','$type','$description','$cost'
-                            ,'$sales','$quan')";
+                            ,'$sales','$quan', '$vendorID', '$vendorName')";
 
                             $result = mysqli_query($con, $query);
                             if($result){

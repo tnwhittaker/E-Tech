@@ -40,45 +40,50 @@
                                     <th>Product Code</th>
                                     <th>Product Type</th>
                                     <th>Sales Price</th>
-                                    <!-- Display this if it is an admin -->
+                                    <?php if (strcmp($_SESSION['user-type'], "admin") == 0): ?>
                                     <th>Vendor</th>
+                                    <?php endif; ?>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php 
-                                    // If the user is an admin, use this,
-                                    // If not, get only the products that are of that vendor only
+                                    $count = 0;
                                     if (isset($_GET['product_search'])){
                                         $search = $_GET['product_query'];
                                         $query = "SELECT * FROM products WHERE
                                         CONCAT(product_name,product_code,product_type,
-                                        product_description,cost_price,sales_price,quantity,vendor)
+                                        product_description,cost_price,sales_price,quantity,vendor_id, vendor)
                                         LIKE'%$search%' LIMIT $start_from, $num_per_page";
                                         $result = mysqli_query($con, $query);
                                     }else{
-                                        $query = "SELECT * FROM products LIMIT $start_from, $num_per_page";
+                                        $userID = $_SESSION['user_id'];
+                                        if (strcmp($_SESSION['user-type'], "vendor") == 0){
+                                            $query = "SELECT * FROM products WHERE 
+                                            vendor_id='$userID' LIMIT $start_from, $num_per_page";
+                                        }else{
+                                            $query = "SELECT * FROM products LIMIT $start_from, $num_per_page";
+                                        }
                                         $result = mysqli_query($con, $query);
                                     }
 
                                     if(mysqli_num_rows($result) > 0){
                                         foreach($result as $product){   
+                                            $count += 1;
                                 ?>
                                 <tr>
                                     <td><?= $product['product_name']; ?></td>
                                     <td><?= $product['product_code']; ?></td>
                                     <td><?= $product['product_type']; ?></td>
                                     <td><?= $product['sales_price']; ?></td>
-                                    <!-- Display this if it is an admin -->
+                                    <?php if (strcmp($_SESSION['user-type'], "admin") == 0): ?>
                                     <td><?= $product['vendor']; ?></td>
+                                    <?php endif; ?>
                                     <td >
-                                        <a href="view_product.php?id=<?= $product['product_id']; ?>"
-                                        class="btn btn-info btn-sm">View Product</a>
-
-                                        <a href="edit_product.php?id=<?= $product['product_id']; ?>"
+                                        <a href="editProduct.php?id=<?= $product['product_id']; ?>"
                                         class="btn btn-success btn-sm">Edit Product</a>
                                         
-                                        <form action="delete_product.php" method="POST" class="d-inline">
+                                        <form action="deleteProduct.php" method="POST" class="d-inline">
                                             <button type="submit" name="delete" value="<?= $product['product_id'];?>" 
                                             class="btn btn-danger btn-sm">Delete Product</button>
                                         </form>
@@ -110,19 +115,25 @@
 
                 echo "<div class='pagination'>";
                 for($i = 1; $i <= $total_pages; $i++){
-                    echo "<a href='product_list.php?product_query=" . $search .
+                    echo "<a href='productList.php?product_query=" . $search .
                     "&product_search=SEARCH&page=" . $i . "'>" . $i . "</a>";
                 }
                 echo "</div>";
             }else{
-                $query = "SELECT * FROM products";
+                $userID = $_SESSION['user_id'];
+                if (strcmp($_SESSION['user-type'], "vendor") == 0){
+                    $query = "SELECT * FROM products WHERE 
+                    vendor_id='$userID'";
+                }else{
+                    $query = "SELECT * FROM products";
+                }
                 $result = mysqli_query($con, $query);
                 $total_records = mysqli_num_rows($result);
                 $total_pages = ceil($total_records/$num_per_page);
 
                 echo "<div class='pagination'>";
                 for($i = 1; $i <= $total_pages; $i++){
-                    echo "<a href='product_list.php?page=" . $i . "'>" . $i . "</a>";
+                    echo "<a href='productList.php?page=" . $i . "'>" . $i . "</a>";
                 }
                 echo "</div>";
             }

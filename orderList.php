@@ -50,23 +50,13 @@
                                             while($row = mysqli_fetch_array($product_info)){
                                                 $rows[] = $row;
                                             }
-
-                                            if(strcmp($_SESSION['user-type'], "vendor") == 0){
-                                                $name = explode(" ", $rows[0]['vendor']);
-                                                $query = "SELECT * FROM users 
-                                                WHERE first_name='$name[0]' AND last_name='$name[1]'";
-                                                $result = mysqli_query($con, $query);
-
-                                                if (mysqli_num_rows($result) > 0){
-                                                    foreach($result as $rs){
-                                                        if ($rs['user_id'] != $_SESSION['user_id']){
-                                                        continue;
-                                                    }else{
-                                                        $count += 1;
-                                                        break;
-                                                    }
-                                                }
+                                            
+                                            if ($rows[0]['vendor_id'] != $_SESSION['user_id']){
+                                                continue;
                                             }
+
+                                            $count+= 1;
+
                                 ?>
                                 <tr>
                                     <td><?= $rows[0]['product_name']; ?></td>
@@ -78,7 +68,7 @@
                                     <td><?= $order['total']; ?></td>
                                 </tr>
                                 <?php
-                                            }
+                                            
                                         }
                                     }else{
                                         echo "<h5> No Orders Found </h5>";
