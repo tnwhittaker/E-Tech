@@ -1,4 +1,3 @@
-<!-- view_product_validate.php -->
 <?php include 'header.php'; ?>
     <main>
         <form method="POST" >
@@ -72,7 +71,14 @@
                                 $vendorID = $_SESSION['user_id'];
                                 $vendorName = $_SESSION['username'];
                             }else{
-                                
+                                $vendorID = $_SESSION['vendor-id'];
+                                $query = "SELECT * FROM users WHERE user_id = '$vendorID'";
+                                $result = mysqli_query($con, $query);
+                                if (mysqli_num_rows($result) > 0){
+                                    foreach($result as $rs){
+                                        $vendorName = $rs['first_name'] . " " . $rs['last_name'];
+                                    }
+                                }
                             }
 
                             $query = "INSERT INTO products (product_name,product_code,product_type,
@@ -92,6 +98,7 @@
                                 unset($_SESSION['costprice']);
                                 unset($_SESSION['salesprice']);
                                 unset($_SESSION['quantity']);
+                                unset($_SESSION['vendor-id']);
                                 
                             }else{
                                 $_SESSION['message'] = "Product Not Registered";

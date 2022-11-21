@@ -73,14 +73,20 @@
                         if(strcmp($_SESSION['user-type'], "vendor") == 0):  
                     ?>
                         <li class="navbar--items"><a href="uploadImages.php" class="header--text">Upload Images</a></li>
+                        <li class="navbar--items">
+                            <a href="changePassword.php" class="header--text">Change Password</a>
+                        </li>
                     <?php endif;?>
                     <?php
                         if(strcmp($_SESSION['user-type'], "admin") == 0):  
                     ?>
                         <li class="navbar--items"><a href="accountList.php" class="header--text">Accounts</a></li>
+                        <li class="navbar--items">
+                            <a href="selectUser.php" class="header--text">Change User Password</a>
+                        </li>
                     <?php endif;?>
 
                     </ul>
                 </nav>
-            <?php endif; ?>
+    <?php endif; ?>
 

@@ -77,18 +77,24 @@
                             $insert_query = "INSERT INTO users(first_name, last_name, dob, email, password, type) 
                             VALUES('$first_name','$last_name','$dob','$email','$hashpassword', 'vendor')";
 
-                            mysqli_query($con, $insert_query);
-                            echo "<p style='text-align: center;'>Your account has been successfully created.
-                            You will now be redirected to the login page.</p>";
+                            $result = mysqli_query($con, $insert_query);
+                            if ($result){
+                                echo "<p style='text-align: center;'>Your account has been successfully created.
+                                You will now be redirected to the login page.</p>";
 
-                            unset($_SESSION['firstname']);
-                            unset($_SESSION['lastname']);
-                            unset($_SESSION['email']);
-                            unset($_SESSION['dob']);
-                            unset($_SESSION['password']);
-                            unset($_SESSION['confirmpassword']);
+                                unset($_SESSION['firstname']);
+                                unset($_SESSION['lastname']);
+                                unset($_SESSION['email']);
+                                unset($_SESSION['dob']);
+                                unset($_SESSION['password']);
+                                unset($_SESSION['confirmpassword']);
 
-                            header( "refresh:5;url=login.php" );
+                                header( "refresh:5;url=login.php" );
+                            }else{
+                                echo "<p style='text-align: center;'>Your account hasn't been created. 
+                                Please try again later.</p>";
+                                header( "refresh:5;url=register.php" );
+                            }
                         }
                     }
                 ?>

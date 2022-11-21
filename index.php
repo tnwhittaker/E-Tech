@@ -66,15 +66,22 @@
 
         <section class="contact">
             <h2>Contact Us</h2>
-            <form class="contact-form">
+            <form class="contact-form" action="validateContact.php" method="POST">
                 <label>Name</label>
-                <input type = "text" placeholder = "John Doe" required/>
+                <input type = "text" 
+                value="<?php echo (isset($_SESSION['contact_name']))?$_SESSION['contact_name']:'';?>" 
+                name="contact_name" placeholder = "John Doe" required/>
             
                 <label>Email</label>
-                <input type="email" placeholder="example@email.com" required/>
+                <input type="email"
+                value="<?php echo (isset($_SESSION['contact_email']))?$_SESSION['contact_email']:'';?>" 
+                name="contact_email" placeholder="example@email.com" required/>
                 
                 <label>Description</label>
-                <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
+                <textarea name="contact_description" 
+                placeholder="Type your message here..." tabindex="5" 
+                required><?php echo (isset($_SESSION['contact_description']))?
+                $_SESSION['contact_description']:'';?></textarea>
 
                 <button name="submit" type="submit" class="contact-submit" >Submit</button>
             </form>
