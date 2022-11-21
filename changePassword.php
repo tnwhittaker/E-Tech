@@ -1,4 +1,9 @@
-<?php include 'header.php';?>
+<?php 
+    include 'header.php';
+    if(isset($_POST['next'])){
+        $_SESSION['update_user'] = $_POST['vendoruser'];
+    }
+?>
     <main>
         <form method="POST" action="confirmChangePassword.php">
             <div class="content">

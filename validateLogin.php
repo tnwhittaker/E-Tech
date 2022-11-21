@@ -35,6 +35,10 @@
                                             You will now be redirected to the main page.</p>";
                     
                                             header( "refresh:5;url=index.php" );
+                                        }else{
+                                            echo "<p style='text-align: center;'>Invalid email or password entered.</p>";
+        
+                                            header( "refresh:5;url=login.php" );
                                         }
                                 }
                             }else{

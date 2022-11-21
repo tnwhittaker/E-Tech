@@ -14,9 +14,6 @@
                             <input type="submit" name="submit" value="Login" class="login">
                             <a href="userRegistration.php" class="help-links">New here? Sign Up</a>
                         </div>
-                        <div>
-                            <a href="#" class="help-links">Forgot my password</a>
-                        </div>
                     </div>
                 </div>
             </div>

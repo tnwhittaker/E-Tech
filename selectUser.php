@@ -8,7 +8,7 @@
                 <h2 class="welcome-header">Select User</h2>
                 <div class="first-container">
                     <section class="section">
-                        <select name="vendorproduct" class="input" required> 
+                        <select name="vendoruser" class="input" required> 
                             <option value="" disabled selected>Select a Product</option>
                             <?php
                             $query = "SELECT * FROM users WHERE type = 'vendor'";

@@ -20,41 +20,62 @@
 
                             if(mysqli_num_rows($user) > 0){
                                 foreach($user as $us){
-                                    $user
+                                    $storedPassword = $us['password'];
                                 }
                             }else{
                                 echo "<p style='text-align: center;'>User does not exist.</p>";
                                 header( "refresh:5;url=changePassword.php" );
                             }
 
-                            if (!password_verify($oldPassword, ))
-                        }
-                        if(!preg_match($email_pattern, $email)){
-                            echo "<p style='text-align: center;'>Invalid Email format entered.</p>";
-        
-                            header( "refresh:5;url=login.php" );
-                        }else{
-                            $query = "SELECT * FROM users WHERE email = '$email'";
-                            $users = mysqli_query($con, $query);
-                            if(mysqli_num_rows($users) > 0){
-                                foreach ($users as $user){
-                                        $hashed_password = $user['password']; 
-                                        if(strcmp($user['email'], $email) == 0 &&
-                                        password_verify($password, $hashed_password)){
-                                            $_SESSION['user-logged-in'] = true;
-                                            $_SESSION['username'] = $user['first_name'] . " " . $user['last_name'];
-                                            $_SESSION['user-type'] = $user['type'];
-                                            $_SESSION['user_id'] = $user['user_id'];
-                                            echo "<p style='text-align: center;'>Your login was successful.
-                                            You will now be redirected to the main page.</p>";
-                    
-                                            header( "refresh:5;url=index.php" );
-                                        }
-                                }
+                            if (!password_verify($oldPassword, $storedPassword)){
+                                echo "<p style='text-align: center;'>Invalid old password entered.</p>";
+                                header( "refresh:5;url=changePassword.php" );
+                            }elseif(password_verify($newPassword, $storedPassword)){
+                                echo "<p style='text-align: center;'>Both passwords are the same.</p>";
+                                header( "refresh:5;url=changePassword.php" );
                             }else{
-                                echo "<p style='text-align: center;'>Invalid email or password entered.</p>";
-        
-                                header( "refresh:5;url=login.php" );
+                                $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+                                $query = "UPDATE users SET password='$hashedPassword' WHERE user_id='$user_id'";
+                                $result = mysqli_query($con, $query);
+
+                                if($result){
+                                    echo "<p style='text-align: center;'>The password has been successfully updated.</p>";
+                                    header( "refresh:5;url=changePassword.php" );
+                                }else{
+                                    echo "<p style='text-align: center;'>The password was not successfully updated.</p>";
+                                    header( "refresh:5;url=changePassword.php" );
+                                }
+                            }
+                        }else{
+                            $userName = $_SESSION['update_user'];
+                            $query = "SELECT * FROM users WHERE type = 'vendor'";
+                            $result = mysqli_query($con, $query);
+
+                            if(mysqli_num_rows($result) > 0){
+                                foreach($result as $rs){
+                                    if(strcmp($rs['first_name'] . " " . $rs['last_name'], $userName) == 0){
+                                        $user_id = $rs['user_id'];
+                                        $storedPassword = $rs['password'];
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if(password_verify($newPassword, $storedPassword)){
+                                echo "<p style='text-align: center;'>Both passwords are the same.</p>";
+                                header( "refresh:5;url=changePassword.php" );
+                            }else{
+                                $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+                                $query = "UPDATE users SET password='$hashedPassword' WHERE user_id='$user_id'";
+                                $result = mysqli_query($con, $query);
+
+                                if($result){
+                                    echo "<p style='text-align: center;'>The password has been successfully updated.</p>";
+                                    header( "refresh:5;url=changePassword.php" );
+                                }else{
+                                    echo "<p style='text-align: center;'>The password was not successfully updated.</p>";
+                                    header( "refresh:5;url=changePassword.php" );
+                                }
                             }
                         }
                     }
