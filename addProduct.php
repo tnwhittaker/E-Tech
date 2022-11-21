@@ -125,6 +125,13 @@
                      name="quantity" class="input" placeholder="Quantity In Stock"
                      value="<?php echo (isset($_SESSION['quantity']))?$_SESSION['quantity']:'';?>" required>
                     <label for="quantity" class="labels">Quantity</label>
+
+                    <?php if(strcmp($_SESSION['user-type'], 'admin') == 0): ?>
+                    <input type="text" minlength="1" maxlength="1"
+                     name="vendor-id" class="input" placeholder="Vendor ID"
+                     value="<?php echo (isset($_SESSION['vendor_id']))?$_SESSION['vendor_id']:'';?>" required>
+                    <label for="vendor-id" class="labels">Vendor ID</label>
+                    <?php endif; ?>
             
                 </div>
             

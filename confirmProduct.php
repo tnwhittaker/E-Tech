@@ -17,6 +17,8 @@
 
         $_SESSION['quantity'] = filter_input(INPUT_POST, 'quantity', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+        $_SESSION['vendor-id'] = filter_input(INPUT_POST, 'vendor-id',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
         $productname = $_SESSION['productname'];
         $productcode = $_SESSION['productcode'];
         $producttype = $_SESSION['producttype'];
@@ -24,6 +26,7 @@
         $costprice = $_SESSION['costprice'];
         $salesprice = $_SESSION['salesprice'];
         $quantity = $_SESSION['quantity'];
+        $vendorID = $_SESSION['vendor-id'];
     }
 ?>
     <main>
@@ -124,7 +127,12 @@
                     <input type="number" name="quantity" class="input" 
                     value="<?php print_r($quantity);?>" disabled required>
                     <label for="quantity" class="labels">Quantity</label>
-            
+
+                    <?php if(strcmp($_SESSION['user-type'], 'admin') == 0): ?>
+                    <input type="text" name="vendor-id" class="input"
+                    value="<?php print_r($vendorID);?>" disabled required>
+                    <label for="vendor-id" class="labels">Vendor ID</label>
+                    <?php endif; ?>
                 </div>
 
                 <?php if (isset($_POST['submit'])): ?>
