@@ -71,12 +71,14 @@
                                 $vendorID = $_SESSION['user_id'];
                                 $vendorName = $_SESSION['username'];
                             }else{
-                                $vendorID = $_SESSION['vendor-id'];
-                                $query = "SELECT * FROM users WHERE user_id = '$vendorID'";
+                                $vendorName = $_SESSION['vendor-name'];
+                                $query = "SELECT * FROM users";
                                 $result = mysqli_query($con, $query);
                                 if (mysqli_num_rows($result) > 0){
                                     foreach($result as $rs){
-                                        $vendorName = $rs['first_name'] . " " . $rs['last_name'];
+                                        if(strcmp($vendorName, $rs['first_name']. " " . $rs['last_name']) == 0){
+                                            $vendorID = $rs['user_id'];
+                                        }
                                     }
                                 }
                             }

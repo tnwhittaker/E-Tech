@@ -17,7 +17,7 @@
 
         $_SESSION['quantity'] = filter_input(INPUT_POST, 'quantity', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        $_SESSION['vendor-id'] = filter_input(INPUT_POST, 'vendor-id',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $_SESSION['vendor-name'] = filter_input(INPUT_POST, 'vendor-name',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
         $productname = $_SESSION['productname'];
         $productcode = $_SESSION['productcode'];
@@ -26,7 +26,7 @@
         $costprice = $_SESSION['costprice'];
         $salesprice = $_SESSION['salesprice'];
         $quantity = $_SESSION['quantity'];
-        $vendorID = $_SESSION['vendor-id'];
+        $vendorname = $_SESSION['vendor-name'];
     }
 ?>
     <main>
@@ -129,9 +129,23 @@
                     <label for="quantity" class="labels">Quantity</label>
 
                     <?php if(strcmp($_SESSION['user-type'], 'admin') == 0): ?>
-                    <input type="text" name="vendor-id" class="input"
-                    value="<?php print_r($vendorID);?>" disabled required>
-                    <label for="vendor-id" class="labels">Vendor ID</label>
+                        <select name="vendor-name" class="input" disabled required>
+                            <?php
+                            $query = "SELECT * FROM users WHERE type = 'vendor'";
+                            $result = mysqli_query($con, $query);
+
+                            if(mysqli_num_rows($result) > 0){
+                                foreach($result as $rs){
+                            ?>
+                                <option value="<?php echo $rs['first_name'] . " " . $rs['last_name']; ?>"  
+                                <?php if($vendorname== 
+                                $rs['first_name'] . " " . $rs['last_name']){echo 'selected';}?>>
+                                <?php echo $rs['first_name'] . " " . $rs['last_name']; ?></option>
+                            <?php
+                                }
+                             } 
+                             ?>
+                        </select>
                     <?php endif; ?>
                 </div>
 

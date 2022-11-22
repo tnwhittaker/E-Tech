@@ -39,10 +39,12 @@
                                 $result = mysqli_query($con, $query);
 
                                 if($result){
-                                    echo "<p style='text-align: center;'>The password has been successfully updated.</p>";
+                                    echo "<p style='text-align: center;'>The password has 
+                                    been successfully updated.</p>";
                                     header( "refresh:5;url=changePassword.php" );
                                 }else{
-                                    echo "<p style='text-align: center;'>The password was not successfully updated.</p>";
+                                    echo "<p style='text-align: center;'>The password 
+                                    was not successfully updated.</p>";
                                     header( "refresh:5;url=changePassword.php" );
                                 }
                             }
@@ -70,10 +72,12 @@
                                 $result = mysqli_query($con, $query);
 
                                 if($result){
-                                    echo "<p style='text-align: center;'>The password has been successfully updated.</p>";
+                                    echo "<p style='text-align: center;'>The password 
+                                    has been successfully updated.</p>";
                                     header( "refresh:5;url=changePassword.php" );
                                 }else{
-                                    echo "<p style='text-align: center;'>The password was not successfully updated.</p>";
+                                    echo "<p style='text-align: center;'>The password 
+                                    was not successfully updated.</p>";
                                     header( "refresh:5;url=changePassword.php" );
                                 }
                             }

@@ -1,7 +1,7 @@
 <?php include 'header.php'; ?>
     <main>
-        <section class="products">
-            <h2>Popular Products</h2>
+        <section class="products ">
+            <h2 style="color:black;">Popular Products</h2>
             <div class="product-container procontainer">
                 <?php
                     $query = "SELECT * FROM products LIMIT 5";

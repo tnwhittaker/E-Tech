@@ -34,19 +34,19 @@
                             echo "<div class='first-container'>";
                             echo "<p style='text-align: center;'>Invalid First Name entered.</p>";
         
-                            header( "refresh:5;url=register.php" );
+                            header( "refresh:5;url=userRegistration.php" );
                         }elseif(!preg_match($name_pattern, $last_name)){
                             echo "<h2 class='welcome-header'>Error</h2>";
                             echo "<div class='first-container'>";
                             echo "<p style='text-align: center;'>Invalid Last Name entered.</p>";
         
-                            header( "refresh:5;url=register.php" );
+                            header( "refresh:5;url=userRegistration.php" );
                         }elseif(!preg_match($email_pattern, $email)){
                             echo "<h2 class='welcome-header'>Error</h2>";
                             echo "<div class='first-container'>";
                             echo "<p style='text-align: center;'>Invalid Email Address entered.</p>";
         
-                            header( "refresh:5;url=register.php" );
+                            header( "refresh:5;url=userRegistration.php" );
                         }elseif($isUser){
                             echo "<h2 class='welcome-header'>Error</h2>";
                             echo "<div class='first-container'>";
@@ -67,7 +67,7 @@
                             echo "<div class='first-container'>";
                             echo "<p style='text-align: center;'>Passwords do not match.</p>";
         
-                            header( "refresh:5;url=register.php" );
+                            header( "refresh:5;url=userRegistration.php" );
                         }else{
                             ?>
                             <h2 class="welcome-header">Success</h2>
@@ -93,7 +93,7 @@
                             }else{
                                 echo "<p style='text-align: center;'>Your account hasn't been created. 
                                 Please try again later.</p>";
-                                header( "refresh:5;url=register.php" );
+                                header( "refresh:5;url=userRegistration.php" );
                             }
                         }
                     }

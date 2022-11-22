@@ -9,7 +9,7 @@
                 <div class="first-container">
                     <section class="section">
                         <select name="vendoruser" class="input" required> 
-                            <option value="" disabled selected>Select a Product</option>
+                            <option value="" disabled selected>Select User</option>
                             <?php
                             $query = "SELECT * FROM users WHERE type = 'vendor'";
                             $result = mysqli_query($con, $query);

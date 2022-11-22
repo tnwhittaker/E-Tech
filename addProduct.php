@@ -127,10 +127,22 @@
                     <label for="quantity" class="labels">Quantity</label>
 
                     <?php if(strcmp($_SESSION['user-type'], 'admin') == 0): ?>
-                    <input type="text" minlength="1" maxlength="1"
-                     name="vendor-id" class="input" placeholder="Vendor ID"
-                     value="<?php echo (isset($_SESSION['vendor_id']))?$_SESSION['vendor_id']:'';?>" required>
-                    <label for="vendor-id" class="labels">Vendor ID</label>
+                        <select name="vendor-name" class="input" required> 
+                            <option value="" disabled selected>Select User</option>
+                            <?php
+                            $query = "SELECT * FROM users WHERE type = 'vendor'";
+                            $result = mysqli_query($con, $query);
+
+                            if(mysqli_num_rows($result) > 0){
+                                foreach($result as $rs){
+                            ?>
+                                <option value="<?php echo $rs['first_name'] . " " . $rs['last_name']; ?>">
+                                <?php echo $rs['first_name'] . " " . $rs['last_name']; ?></option>
+                            <?php
+                                }
+                             } 
+                             ?>
+                        </select>
                     <?php endif; ?>
             
                 </div>

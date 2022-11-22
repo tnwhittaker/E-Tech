@@ -1,11 +1,11 @@
 <?php
 include 'header.php';
    
-    if(isset($_GET['place-order'])){
-        $price = substr($_SESSION['sales_price'], 1);
-        $total = (int)$_GET['user_quantity'] * (int)$price;
+    if(isset($_POST['place-order'])){
+        $price = $_SESSION['sales_price'];
+        $total = (int)$_POST['user_quantity'] * (int)$price;
         $_SESSION['total'] = $total;
-        $_SESSION['user_quantity'] = $_GET['user_quantity'];
+        $_SESSION['user_quantity'] = $_POST['user_quantity'];
         $_SESSION['price'] = $price;
     }
 
@@ -16,14 +16,14 @@ include 'header.php';
         <h2>Review of Order</h2> 
         <p>Name of Product: <?php echo $_SESSION['product_name'];?></p>
         <p>Price: <?php echo $_SESSION['sales_price'];?></p>
-        <p>Quantity: <?php echo $_GET['user_quantity'];?></p>
-        <p>Final Price: <?php echo $total;?></p>
+        <p>Quantity: <?php echo $_POST['user_quantity'];?></p>
+        <p>Final Price: <?php echo "$" . $total . ".00";?></p>
              
         </section>
         <section class="panel2" >
             <div>
                 <h2>Please fill out the form below</h2>
-                <form action="purchase.php" method="GET">
+                <form action="purchase.php" method="POST">
                     <p>Contact Information</p>
                     <label for="name">Full Name:</label>
                     <input type="text" name="name" id="" class="test"><br>

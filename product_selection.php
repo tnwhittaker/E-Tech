@@ -16,11 +16,12 @@ include 'header.php';
  
         $query = "SELECT * FROM products WHERE product_id='$productID'";
         $product = mysqli_query($con, $query);
-        if(mysqli_num_rows($images) > 0){
+        if(mysqli_num_rows($product) > 0){
             foreach($product as $prod){
                 $_SESSION['product_name'] = $prod['product_name'];
                 $_SESSION['sales_price'] = $prod['sales_price'];
                 $_SESSION['quantity'] = $prod['quantity'];
+                $_SESSION['prod-id'] = $prod['product_id'];
             }
         }
     }
@@ -48,7 +49,7 @@ include 'header.php';
             <div>
                 <h2><?php echo $_SESSION['product_name'] ?></h2>
                 <h4>Sales Price: <?php echo $_SESSION['sales_price'] ?></h4>
-                <form action="checkout.php" method="GET">
+                <form action="checkout.php" method="POST">
                 <?php
                     function dropdownMenu($quantity){
                         echo "<span>Quantity: </span>";

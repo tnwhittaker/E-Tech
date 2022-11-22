@@ -40,6 +40,7 @@
                                     <th>Product Code</th>
                                     <th>Product Type</th>
                                     <th>Sales Price</th>
+                                    <th>Quantity</th>
                                     <?php if (strcmp($_SESSION['user-type'], "admin") == 0): ?>
                                     <th>Vendor</th>
                                     <?php endif; ?>
@@ -51,10 +52,18 @@
                                     $count = 0;
                                     if (isset($_GET['product_search'])){
                                         $search = $_GET['product_query'];
-                                        $query = "SELECT * FROM products WHERE
-                                        CONCAT(product_name,product_code,product_type,
-                                        product_description,cost_price,sales_price,quantity,vendor_id, vendor)
-                                        LIKE'%$search%' LIMIT $start_from, $num_per_page";
+                                        if (strcmp($_SESSION['user-type'], "vendor") == 0){
+                                            $userID = $_SESSION['user_id'];
+                                            $query = "SELECT * FROM products WHERE
+                                            CONCAT(product_name,product_code,product_type,
+                                            product_description,cost_price,sales_price,quantity,vendor_id, vendor)
+                                            LIKE'%$search%' AND vendor_id='$userID' LIMIT $start_from, $num_per_page";
+                                        }else{
+                                            $query = "SELECT * FROM products WHERE
+                                            CONCAT(product_name,product_code,product_type,
+                                            product_description,cost_price,sales_price,quantity,vendor_id, vendor)
+                                            LIKE'%$search%' WHERE LIMIT $start_from, $num_per_page";
+                                        }
                                         $result = mysqli_query($con, $query);
                                     }else{
                                         $userID = $_SESSION['user_id'];
@@ -76,6 +85,7 @@
                                     <td><?= $product['product_code']; ?></td>
                                     <td><?= $product['product_type']; ?></td>
                                     <td><?= $product['sales_price']; ?></td>
+                                    <td><?= $product['quantity']; ?></td>
                                     <?php if (strcmp($_SESSION['user-type'], "admin") == 0): ?>
                                     <td><?= $product['vendor']; ?></td>
                                     <?php endif; ?>
@@ -105,10 +115,18 @@
         <?php
             if (isset($_GET['product_search'])){
                 $search = $_GET['product_query'];
-                $query = "SELECT * FROM products WHERE
-                CONCAT(product_name,product_code,product_type,
-                product_description,cost_price,sales_price,quantity,vendor)
-                LIKE'%$search%'";
+                if (strcmp($_SESSION['user-type'], "vendor") == 0){
+                    $userID = $_SESSION['user_id'];
+                    $query = "SELECT * FROM products WHERE
+                    CONCAT(product_name,product_code,product_type,
+                    product_description,cost_price,sales_price,quantity,vendor_id, vendor)
+                    LIKE'%$search%' AND vendor_id='$userID' LIMIT $start_from, $num_per_page";
+                }else{
+                    $query = "SELECT * FROM products WHERE
+                    CONCAT(product_name,product_code,product_type,
+                    product_description,cost_price,sales_price,quantity,vendor_id, vendor)
+                    LIKE'%$search%' WHERE LIMIT $start_from, $num_per_page";
+                }
                 $result = mysqli_query($con, $query);
                 $total_records = mysqli_num_rows($result);
                 $total_pages = ceil($total_records/$num_per_page);
