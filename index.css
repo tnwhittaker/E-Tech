@@ -299,6 +299,8 @@ a{
     color: white;
     margin-bottom: 2rem; 
     margin-right: 1rem;
+    max-width: 750px;
+    margin: 0 auto 2rem auto;
 }
 
 .about--table {
@@ -325,6 +327,8 @@ a{
     padding: 1rem;
     margin-bottom: 2rem;
     margin-right: 1rem;
+    max-width: 750px;
+    margin: 0 auto;
 }
 
 input[type="text"],
@@ -545,4 +549,49 @@ textarea {
   
 .pagination a:hover:not(.active) {
     background-color: rgb(142, 140, 140);
+}
+
+@media screen and (max-width:768px) {
+    .procontainer{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .header{
+        flex-direction: column;
+        
+    }
+    .navbar{
+        /* flex-direction: column; */
+        /* border: yellow solid 3px; */
+        display: none;
+    }
+
+    .navbar--items{
+        display: none;
+    }
+    .about, .contact{
+        max-width: 550px;
+        
+    }
+
+
+    .search{
+        display: inline;
+        
+    }
+
+    .footer--content{
+        text-align: center;
+    }
+
+    .header--text{
+        font-size: 3rem;
+    }
+
+    .myriad--img{
+        width: 65px;
+        height: 65px;
+    }
+   
 }

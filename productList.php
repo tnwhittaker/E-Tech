@@ -62,7 +62,7 @@
                                             $query = "SELECT * FROM products WHERE
                                             CONCAT(product_name,product_code,product_type,
                                             product_description,cost_price,sales_price,quantity,vendor_id, vendor)
-                                            LIKE'%$search%' WHERE LIMIT $start_from, $num_per_page";
+                                            LIKE'%$search%' LIMIT $start_from, $num_per_page";
                                         }
                                         $result = mysqli_query($con, $query);
                                     }else{
@@ -125,7 +125,7 @@
                     $query = "SELECT * FROM products WHERE
                     CONCAT(product_name,product_code,product_type,
                     product_description,cost_price,sales_price,quantity,vendor_id, vendor)
-                    LIKE'%$search%' WHERE LIMIT $start_from, $num_per_page";
+                    LIKE'%$search%' LIMIT $start_from, $num_per_page";
                 }
                 $result = mysqli_query($con, $query);
                 $total_records = mysqli_num_rows($result);

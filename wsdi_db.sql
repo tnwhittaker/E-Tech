@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2022 at 05:26 AM
+-- Generation Time: Nov 25, 2022 at 02:51 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -38,20 +38,23 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`id`, `product_id`, `image_name`) VALUES
-(1, 1, 'geometry_cyberspace.jpg'),
-(2, 2, 'geometry_cyberspace.jpg'),
-(3, 3, 'geometry_cyberspace.jpg'),
-(4, 4, 'geometry_cyberspace.jpg'),
-(6, 2, '4.jpg'),
-(7, 3, '6.jpg'),
-(8, 3, '5.jpg'),
-(9, 3, '4.jpg'),
-(10, 3, '3.jpg'),
-(11, 2, '5.jpg'),
-(12, 2, '3.jpg'),
-(13, 2, '3.jpg'),
-(14, 2, '4.jpg'),
-(15, 2, '6.jpg');
+(16, 11, '6.jpg'),
+(17, 11, '5.jpg'),
+(18, 11, '4.jpg'),
+(19, 12, '6.jpg'),
+(20, 12, '5.jpg'),
+(21, 12, '4.jpg'),
+(22, 19, '5.jpg'),
+(23, 12, '5.jpg'),
+(24, 13, '5.jpg'),
+(25, 14, '6.jpg'),
+(26, 14, '6.jpg'),
+(27, 15, '5.jpg'),
+(28, 15, '6.jpg'),
+(29, 16, '6.jpg'),
+(30, 12, '6.jpg'),
+(31, 12, '5.jpg'),
+(32, 12, '4.jpg');
 
 -- --------------------------------------------------------
 
@@ -72,11 +75,18 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `product_id`, `customer_name`, `amount`, `total`) VALUES
-(2, 3, '1', 2, '200.00'),
-(3, 1, 'Torrike Whittaker', 1, '75000.00'),
-(4, 1, 'Anthony Smith', 1, '75000.00'),
-(5, 1, 'Kevin James', 1, '75000.00'),
-(6, 2, 'ddd', 1, '180000.00');
+(8, 12, 'Kevin', 6, '100.00'),
+(9, 12, 'jndff', 20, '100.00'),
+(10, 12, 'jndff', 20, '100.00'),
+(11, 12, 'jndff', 20, '100.00'),
+(12, 12, 'iejrgiejg', 7, '700.00'),
+(13, 12, 'sjnfjnfr', 3, '300.00'),
+(14, 12, 'iejrgiejg', 7, '700.00'),
+(15, 12, 'sjnfjnfr', 3, '300.00'),
+(16, 12, 'iejrgiejg', 7, '700.00'),
+(17, 12, 'Kevin James', 12, '1200.00'),
+(18, 20, 'djgndg', 1, '20000.00'),
+(19, 12, 'Kevin Jones', 10, '1000.00');
 
 -- --------------------------------------------------------
 
@@ -102,10 +112,13 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `product_code`, `product_type`, `product_description`, `vendor_id`, `vendor`, `cost_price`, `sales_price`, `quantity`) VALUES
-(1, 'Samsung Galaxy S10', 'SG10', 'Wireless Charger', 'New condition garbage!1111', 11, 'Sir sir', '80000.00', '75000.00', 1),
-(2, 'Samsung Galaxy S22', 'SG22', 'Smart Watch', 'Mint Conditionja', 20, 'Test Test', '200000.00', '180000.00', 4),
-(3, 'Samsung Galaxy S15', 'SG10', 'Smartphone', 'New condition garbage', 20, 'Test Test', '80000.00', '75000.00', 3),
-(4, 'Samsung Galaxy S28', 'SG22', 'Smartphone', 'Mint Condition', 11, 'Test Sir', '200000.00', '180000.00', 1);
+(12, 'Alcatel', 'ALC23', 'Wireless Mouse', 'JNSDJNJSDKNJSNDJFNKFV', 21, 'Test Test', '100.00', '100.00', 454),
+(13, 'Alcatel', 'ALC23', 'Wireless Mouse', 'JNSDJNJSDKNJSNDJFNKFV', 21, 'Test Test', '100.00', '100.00', 464),
+(14, 'Alcatel', 'ALC23', 'Wireless Mouse', 'JNSDJNJSDKNJSNDJFNKFV', 21, 'Test Test', '100.00', '100.00', 464),
+(15, 'Alcatel', 'ALC23', 'Wireless Mouse', 'JNSDJNJSDKNJSNDJFNKFV', 21, 'Test Test', '100.00', '100.00', 464),
+(16, 'Alcatel', 'ALC23', 'Wireless Mouse', 'JNSDJNJSDKNJSNDJFNKFV', 21, 'Test Test', '100.00', '100.00', 464),
+(17, 'Alcatel', 'ALC23', 'Wireless Mouse', 'JNSDJNJSDKNJSNDJFNKFV', 21, 'Test Test', '100.00', '100.00', 464),
+(20, 'FlashLight', 'FLASH', 'Webcam', 'This is a webcam that is of the highest quality', 24, 'Kevin James', '10000.00', '20000.00', 499);
 
 -- --------------------------------------------------------
 
@@ -129,7 +142,11 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `dob`, `email`, `password`, `type`) VALUES
 (11, 'Admin', '', '0000-00-00', 'admin@etech.com', '$2y$10$zVRUZCcdzIEYlJ7/QwOEC.sE83NSkHjbre2grVsyJV3uUdeDg2HPS', 'admin'),
-(20, 'Test', 'Test', '2004-12-16', 'test@test.com', '$2y$10$wxNtWtv4yFSUr3Mo7b.p/.hCY2lenAj7PAj0DTMbE.pLz2xeS25lC', 'vendor');
+(21, 'Test', 'Test', '2004-12-14', 'test@test.com', '$2y$10$jQyZUfIUtklPVcEEKA/Zku75qir8DmjvJrdCHzyWC.2AA1uepO7Su', 'vendor'),
+(22, 'Alan', 'Turing', '2004-12-14', 'aturing@gmail.com', '$2y$10$IEXDdjYl1GXbjBS/6Wr/COCxucNR5pvev9qbwq279k0BMkup9efz2', 'vendor'),
+(24, 'Kevin', 'James', '2004-12-15', 'kjames@gmail.com', '$2y$10$KKioo.YxVFFzpE1I0STT.u8gGDBToRsn8SvAAhAu4hUKXEjoWH0mW', 'vendor'),
+(26, 'Alvin', 'Patrick', '2004-12-14', 'alpatrick@gmail.com', '$2y$10$Oetocv2/AAPssO04tqwm6eI7jY5Yr8T1mQ24mnlQPg.2ZvRG6umaa', 'vendor'),
+(27, 'Winston', 'Richards', '2004-11-30', 'winrich@gmail.com', '$2y$10$Iy.K3Vt/Xiw922RgzCdtnO6wVO8sOdWy0AGvBp.0sO5cO9/ZbiBBK', 'vendor');
 
 --
 -- Indexes for dumped tables
@@ -172,35 +189,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `order_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `products`
---
-ALTER TABLE `products`
-  ADD CONSTRAINT `vendor` FOREIGN KEY (`vendor_id`) REFERENCES `users` (`user_id`);
+  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

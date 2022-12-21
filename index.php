@@ -2,7 +2,7 @@
     <main>
         <section class="products ">
             <h2 style="color:black;">Popular Products</h2>
-            <div class="product-container procontainer">
+            <div class="product--container procontainer">
                 <?php
                     $query = "SELECT * FROM products LIMIT 5";
                     $products = mysqli_query($con, $query);

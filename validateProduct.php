@@ -91,8 +91,7 @@
                             $result = mysqli_query($con, $query);
                             if($result){
                                 $_SESSION['message'] = "Product Registered Successfully";
-                                header( "Location: productList.php" );
-
+                                
                                 unset($_SESSION['productname']);
                                 unset($_SESSION['productcode']);
                                 unset($_SESSION['producttype']);
@@ -101,6 +100,8 @@
                                 unset($_SESSION['salesprice']);
                                 unset($_SESSION['quantity']);
                                 unset($_SESSION['vendor-id']);
+
+                                header( "Location: productList.php" );
                                 
                             }else{
                                 $_SESSION['message'] = "Product Not Registered";

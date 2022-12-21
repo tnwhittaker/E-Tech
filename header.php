@@ -20,15 +20,14 @@
 <body>
     <header class="header">
         <div class="logo">
-        <img src="myriad-logo.png" height="40" width="40" alt="logo">
+        <img src="myriad-logo.png" height="40" width="40" alt="logo" class="myriad--img">
             <ul>
                 <li class=""><a href="index.php" class="header--text">E-Tech Solutions</a></li>
             </ul>
         </div>
 
-        <nav>
-            <ul class="navbar">
-                <li class="navbar--items">
+        
+        <nav class="search">
                     <form action="search.php" method="GET">
                         <div class="search-group">
                             <input type="search" class="search-bar" 
@@ -36,7 +35,11 @@
                             <input type="submit" value="SEARCH" class="login" name="search">
                         </div>
                     </form>
-                </li>
+        </nav>
+
+        <nav>
+            <ul class="navbar">
+             
 
                 <?php
                     if(!isset($_SESSION)) 

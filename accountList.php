@@ -10,7 +10,7 @@
                 $page = 1;
             }
 
-            $start_from = ($page-1)*5;
+            $start_from = ($page-1) * 5;
         ?>
         <div class="row">
             <div class="col-md-12">
@@ -34,16 +34,12 @@
                             </thead>
                             <tbody>
                                 <?php 
-                                    $count = 0;
-                                    $query = "SELECT * FROM users LIMIT $start_from, $num_per_page";
+                                    $query = "SELECT * FROM users WHERE type='vendor' LIMIT $start_from, $num_per_page";
                                     $users = mysqli_query($con, $query);
 
                                     if(mysqli_num_rows($users) > 0){
                                         foreach($users as $user){
-                                            if (strcmp($user['type'], 'admin') == 0){
-                                                continue;
-                                            }   
-                                            $count += 1;  
+                                            
                                 ?>
                                 <tr>
                                     <td><?= $user['first_name']; ?> <?= $user['last_name']; ?></td>
@@ -66,9 +62,6 @@
                                                 }else{
                                                     echo "<h5> No Users Found </h5>";
                                                 }
-                                                if ($count == 0){
-                                                    echo "<h5> No Users Found </h5>";
-                                                }
                                 ?>
                             </tbody>
                         </table>
@@ -77,7 +70,7 @@
             </div>
         </div>
         <?php
-            $product_query = "SELECT * FROM users";
+            $query = "SELECT * FROM users WHERE type='vendor'";
             $users = mysqli_query($con, $query);
             $total_records = mysqli_num_rows($users);
             $total_pages = ceil($total_records/$num_per_page);

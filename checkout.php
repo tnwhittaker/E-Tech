@@ -16,8 +16,8 @@ include 'header.php';
         <h2>Review of Order</h2> 
         <p>Name of Product: <?php echo $_SESSION['product_name'];?></p>
         <p>Price: <?php echo $_SESSION['sales_price'];?></p>
-        <p>Quantity: <?php echo $_POST['user_quantity'];?></p>
-        <p>Final Price: <?php echo "$" . $total . ".00";?></p>
+        <p>Quantity: <?php echo $_SESSION['user_quantity'];?></p>
+        <p>Final Price: <?php echo "$" . $_SESSION['total'] . ".00";?></p>
              
         </section>
         <section class="panel2" >
