@@ -28,13 +28,21 @@
 
         
         <nav class="search">
-                    <form action="search.php" method="GET">
-                        <div class="search-group">
-                            <input type="search" class="search-bar" 
-                            name="query" value="<?php if(isset($_GET['query'])){echo $_GET['query'];}else{echo '';}?>" >
-                            <input type="submit" value="SEARCH" class="login" name="search">
-                        </div>
-                    </form>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <div>
+                <form action="search.php" method="GET">
+                    <div class="search-group">
+                        <input type="search" class="search-bar"
+                        name="query" value="<?php if(isset($_GET['query'])){echo $_GET['query'];}else{echo '';}?>" >
+                        <input type="submit" value="SEARCH" class="login" name="search">
+                    </div>
+                </form>
+            </div>
         </nav>
 
         <nav>
@@ -92,4 +100,5 @@
                     </ul>
                 </nav>
     <?php endif; ?>
-
+<script src="index.js"></script>
+</body>

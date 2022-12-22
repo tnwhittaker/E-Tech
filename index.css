@@ -562,14 +562,13 @@ textarea {
         
     }
     .navbar{
-        /* flex-direction: column; */
+        flex-direction: column;
         /* border: yellow solid 3px; */
-        display: none;
+        /* display: none; */
     }
 
-    .navbar--items{
-        display: none;
-    }
+
+    
     .about, .contact{
         max-width: 550px;
         
@@ -577,7 +576,9 @@ textarea {
 
 
     .search{
-        display: inline;
+        display: flex;
+        align-items: center;
+        gap: 15px;
         
     }
 
@@ -593,5 +594,24 @@ textarea {
         width: 65px;
         height: 65px;
     }
+
+    .navbar--items{
+        display: none;
+    }
+
+    .fuck{
+        display: block;
+    }
    
+    .navbar--items > a{
+        font-size: large;
+    }
+
+    .bar{
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        display: block;
+        background-color: white;
+    }
 }
