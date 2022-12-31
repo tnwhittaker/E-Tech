@@ -8,9 +8,9 @@
 
 $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 $cleardb_server = $cleardb_url["us-cdbr-east-06.cleardb.net"];
-$cleardb_username = $cleardb_url["b75bda2c4552fa"];
-$cleardb_password = $cleardb_url["38a6b2d1"];
-$cleardb_db = substr($cleardb_url["heroku_8774dcd25e949b1"],1);
+$cleardb_username = $cleardb_url["bbcd188782a295"];
+$cleardb_password = $cleardb_url["33ab9f63"];
+$cleardb_db = substr($cleardb_url["heroku_a690e11a02cd9fc"],1);
 $active_group = 'default';
 $query_builder = TRUE;
 // Connect to DB
