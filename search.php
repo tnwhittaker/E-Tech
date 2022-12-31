@@ -35,7 +35,7 @@
                                 style="border:none;" name="sales_price'.$i.'" value="$'.$row['sales_price'].'"/></h4>
                                 
                                 </div>
-                                <a href="./product_selection.php">
+                                <a href="./product_selection.php" style="text-decoration: none;">
                                 <input type="submit" style="margin-left: 0.8rem; margin-bottom:1rem;" 
                                 name="submit" value="Go to Product" class="login"> </a>
                                 </div>

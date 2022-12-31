@@ -28,8 +28,8 @@
                         <div class="product_searchbar">
                             <input type="text" name="product_query" value="<?php if(isset($_GET['product_query']))
                             {echo $_GET['product_query'];}else{echo '';}?>" class="search_item search_field">
-                            <input type="submit" value="SEARCH" name="product_search" class="search_item btn_search">
-                            <input type="submit" value="CLEAR" name="product_clear" class="search_item btn_clear">
+                            <input type="submit" value="Search" name="product_search" class="search_item btn_search">
+                            <input type="submit" value="Clear" name="product_clear" class="search_item btn_clear">
                         </div>
                     </form>
                     <div class="card-body">

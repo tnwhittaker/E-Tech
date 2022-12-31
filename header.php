@@ -39,39 +39,38 @@
                     <div class="search-group">
                         <input type="search" class="search-bar"
                         name="query" value="<?php if(isset($_GET['query'])){echo $_GET['query'];}else{echo '';}?>" >
-                        <input type="submit" value="SEARCH" class="login" name="search">
+                        <input type="submit" value="Search" class="login" name="search">
                     </div>
                 </form>
             </div>
         </nav>
 
-        <nav>
-            <ul class="navbar">
-             
-
-                <?php
-                    if(!isset($_SESSION)) 
-                    { 
-                        session_start(); 
-                    }
-                    require 'dbconnect.php';
-
-                    if (isset($_SESSION['user-logged-in'])): 
-                ?>
-                    <li class="navbar--items"><h3 style="color: white;">Welcome 
-                    <?php echo $_SESSION['username'];?></h3></li>
+        <nav class="nav-options">
+            <nav class="idk nav-bttns">
+                <ul class="navbar">
                     <?php
-                        if(strcmp($_SESSION['user-type'], "vendor") == 0):  
+                        if(!isset($_SESSION))
+                        {
+                            session_start();
+                        }
+                        require 'dbconnect.php';
+                        if (isset($_SESSION['user-logged-in'])):
                     ?>
-                    <li class="navbar--items"><a href="editUser.php" class="header--text">Edit Profile</a></li>
-                    <?php endif;?>
-                    <li class=""><a href="logout.php" class="header--text">Log Out</a></li>
-                <?php else: ?>
-                    <li class="navbar--items"><a href="login.php" class="header--text">Login</a></li>
-                    <li class="navbar--items"><a href="userRegistration.php" class="header--text">Sign Up</a></li>
-                    <li class="navbar--items"><a href="allProducts.php" class="header--text">View Products</a></li>
-                <?php endif; ?>
-            </ul>
+                        <li class=""><p class="name header--text">Welcome
+                        <?php echo $_SESSION['username'];?></p></li>
+                        <?php
+                            if(strcmp($_SESSION['user-type'], "vendor") == 0):
+                        ?>
+                        <li class="navbar--items"><a href="editUser.php" class="header--text">Edit Profile</a></li>
+                        <?php endif;?>
+                        <li class="navbar--items"><a href="logout.php" class="header--text">Log Out</a></li>
+                    <?php else: ?>
+                        <li class="navbar--items"><a href="login.php" class="header--text">Login</a></li>
+                        <li class="navbar--items"><a href="userRegistration.php" class="header--text">Sign Up</a></li>
+                        <li class="navbar--items"><a href="allProducts.php" class="header--text">View Products</a></li>
+                    <?php endif; ?>
+                </ul>
+            </nav>
         </nav>
         
     </header>
@@ -100,5 +99,5 @@
                     </ul>
                 </nav>
     <?php endif; ?>
-<script src="index.js"></script>
+    <script src="./index.js?v=<?php echo time(); ?>"></script>
 </body>
