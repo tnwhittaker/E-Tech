@@ -65,7 +65,7 @@
                         <?php endif;?>
                         <li class="navbar--items"><a href="logout.php" class="header--text">Log Out</a></li>
                     <?php else: ?>
-                        <li class="navbar--items"><a href="login.php" class="header--text">Login</a></li>
+                        <li class="navbar--items"><a href="./login.php" class="header--text">Login</a></li>
                         <li class="navbar--items"><a href="userRegistration.php" class="header--text">Sign Up</a></li>
                         <li class="navbar--items"><a href="allProducts.php" class="header--text">View Products</a></li>
                     <?php endif; ?>
